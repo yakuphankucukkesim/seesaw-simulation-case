@@ -7,6 +7,16 @@ const btnReset = document.getElementById('reset-btn');
 // ekrandaki kutular
 let items = [];
 
+// sayfa yüklendiğinde eski veriyi getirir (local storage)
+window.addEventListener('DOMContentLoaded', () => {
+    const savedData = localStorage.getItem('seesaw_data');
+    if (savedData) {
+        items = JSON.parse(savedData);
+        drawItems();
+        calculateBalance();
+    }
+});
+
 // yeni kutu ekleme
 plankEl.addEventListener('click', (e) => {
     // plank'ın genişliğini ve pozisyonunu al
@@ -99,3 +109,15 @@ function calculateBalance() {
     // rotate işlemini uygula
     simulationArea.style.transform = `rotate(${rotationAngle}deg)`;
 }
+
+// reset butonu
+btnReset.addEventListener('click', () => {
+    items = []; // arrayi boşalt
+    localStorage.removeItem('seesaw_data'); // storage'ı temizle
+
+    // UI reset
+    plankEl.innerHTML = '';
+    simulationArea.style.transform = 'rotate(0deg)';
+    lblLeftWeight.innerText = '0';
+    lblRightWeight.innerText = '0';
+});
