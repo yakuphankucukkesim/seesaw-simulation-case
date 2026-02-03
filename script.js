@@ -121,3 +121,29 @@ btnReset.addEventListener('click', () => {
     lblLeftWeight.innerText = '0';
     lblRightWeight.innerText = '0';
 });
+
+// ses efekti üretimi
+function playThudSound() {
+    // tarayıcı desteği kontrolü
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    // sesin tonu
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(100, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
+
+    // sesin seviyesi
+    gain.gain.setValueAtTime(0.5, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.15);
+} 
