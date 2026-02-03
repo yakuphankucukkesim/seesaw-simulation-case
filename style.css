@@ -1,0 +1,109 @@
+:root {
+    --plank-width: 500px;
+    --plank-height: 10px;
+    --primary-color: #333;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+}
+
+.simulation-area {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.seesaw-container {
+    width: var(--plank-width);
+    height: var(--plank-height);
+    position: relative;
+    bottom: 100px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center center;
+}
+
+.plank {
+    width: 100%;
+    height: 100%;
+    background-color: #2f3542;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    background-image:
+        linear-gradient(to right, transparent 49.8%, #e74c3c 49.8%, #e74c3c 50.2%, transparent 50.2%),
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(255, 255, 255, 0.2) 49px, rgba(255, 255, 255, 0.2) 50px);
+}
+
+.fulcrum {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #333;
+    position: absolute;
+    bottom: 60px;
+}
+
+.weight-box {
+    position: absolute;
+    bottom: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: #e74c3c;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.weight-light {
+    background-color: #3498db;
+}
+
+.weight-medium {
+    background-color: #f1c40f;
+    color: #333;
+}
+
+.weight-heavy {
+    background-color: #e74c3c;
+}
+
+.info-panel {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
