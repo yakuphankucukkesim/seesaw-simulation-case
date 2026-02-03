@@ -1,3 +1,4 @@
+// Yakuphan Küçükkesim
 const simulationArea = document.querySelector('.seesaw-container');
 const plankEl = document.querySelector('.plank');
 const lblLeftWeight = document.getElementById('left-total');
